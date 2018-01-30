@@ -13,5 +13,12 @@ var server = http.createServer(function (request, response){
 
 var io = socketio.listen(server);
 io.sockets.on('connection', function (socket){
-  console.log('어이구, 환영해유');
+  // rint 이벤트
+  socket.on('rint', function (data){
+    //클라이언트가 전송한 데이터를 출력합니다.
+    console.log('Client Send Data: ', data);
+    //클라이언트에 smart
+    //socket.emit('smart', data); //private
+    io.sockets.emit('smart', data);  //public
+  });
 });
