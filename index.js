@@ -19,6 +19,7 @@ io.sockets.on('connection', function (socket){
     console.log('Client Send Data: ', data);
     //클라이언트에 smart
     //socket.emit('smart', data); //private
-    io.sockets.emit('smart', data);  //public
+    //io.sockets.emit('smart', data);  //public
+    socket.broadcast.emit('smart', data); //broadcast
   });
 });
