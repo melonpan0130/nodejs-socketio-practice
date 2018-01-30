@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-socketio-practice",
+  "version": "0.0.1",
+  "description": "nodejs study socketio practice example source",
+  "main": "index.js",
+  "dependencies": {
+    "socket.io": "^1.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
