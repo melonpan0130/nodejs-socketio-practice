@@ -1,9 +1,14 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf8">
+    <meta charset="utf-8"><!-- 가장 앞에 작성-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mobile Chat</title>
     <link rel="shortcut icon" href="http://www.e-mirim.hs.kr/favicon.ico">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+    </script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       $(document).ready(function(){
@@ -18,6 +23,7 @@
           output += '</li>';
 
           $(output).prependTo('#content');
+          $('#content').listview('refresh');
         });
 
         $('button').click(function(){
@@ -31,15 +37,28 @@
     </script>
   </head>
   <body>
-    <h1>Socket.io Chat</h1>
-    <p>Chat With Node.js</p>
-    <hr />
+    <div data-role="page">
+      <div data-role="header">
+        <h1>Socket.io Chat</h1>
+      </div>
+      <div data-role="content">
+        <h3>Nick Name</h3>
+        <input id="name" />
+        <a data-role="button" href="#chatpage">Start Chat</a>
+      </div>
+    </div>
+    <div data-role="page" id="chatpage">
+      <div data-role="header">
+        <h1>Socket.io Chat</h1>
+      </div>
+      <div data-role="content">
+        <input id="message" />
 
-    <input id="name" />
-    <input id="message" />
-    <button>Button</button>
-    <ul id="content">
+        <button>Button</button>
+        <ul id="content" data-role="listview" data-insert="true">
 
-    </ul>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
