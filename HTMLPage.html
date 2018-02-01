@@ -1,25 +1,37 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf8">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      var room;
       window.onload = function () {
-        var socket = io.connect();
+        room = prompt('방을 입력하세요.','');
 
-        socket.on('smart', function (data){
-          alert(data);
+        var socket = io.connect();
+        socket.emit('join', room);
+
+        socket.on('message', function (data){
+          $('<p>' + data + '</p>').appendTo('body');
+          console.log("메시지 왔음" + data);
         });
 
-        document.getElementById('button').onclick = function() {
-          var text = document.getElementById('text').value;
-          socket.emit('rint', text);
+        var output = document.getElementById("talk").value;
+        var input = document.getElementById("input").value;
+        document.getElementById('button').onclick = function(input) {
+
+          socket.emit('join', room);
+          socket.emit('message', 'socket.io room message');
+          output += document.getElementById("input").value;
         };
-      };
+      }; //onload
     </script>
   </head>
   <body>
-    <input type="text" id="text" />
-    <input type="button" id="button" value="echo" />
+    <input type="text" id="input"></input>
+    <button id="button">EMIT</button>
+    <hr />
+    <div id="talk">it is div</div>
   </body>
 </html>
